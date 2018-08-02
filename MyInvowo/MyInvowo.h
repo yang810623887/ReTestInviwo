@@ -11,6 +11,8 @@
 #include <unordered_map>
 #include <QDockWidget>
 
+//class SettingsWidget;
+
 class MyInvowo : public QMainWindow
 {
 	Q_OBJECT
@@ -59,6 +61,7 @@ private:
 	QToolBar* basicToolbar_;
 
 	// dock widgets
+	//SettingsWidget* settingsWidget_;
 
 	// menu actions
 	std::unordered_map<std::string, QAction*> actions_;

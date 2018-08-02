@@ -1,5 +1,5 @@
 ﻿  Moc'ing MyInvowo.h...
-  moc_MyInvowo.cpp
-  MyInvowo.cpp
   main.cpp
+  MyInvowo.cpp
+  moc_MyInvowo.cpp
   MyInvowo.vcxproj -> E:\OpenSourceProject\MyInvowo\x64\Debug\MyInvowo.exe

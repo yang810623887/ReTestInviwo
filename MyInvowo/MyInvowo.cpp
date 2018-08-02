@@ -178,6 +178,7 @@ void MyInvowo::addActions()
 		fileMenuItem->addAction(exitAction);
 	}
 
+	//Edit
 	{
 		//undoAction 需要引入外部功能
 		auto undoAction = new QAction(tr("undo"), this);
@@ -261,7 +262,7 @@ void MyInvowo::addActions()
 
 	// View
 	{
-		//// dock widget visibility menu entries
+		// dock widget visibility menu entries
 		//viewMenuItem->addAction(settingsWidget_->toggleViewAction());
 		//processorTreeWidget_->toggleViewAction()->setText(tr("&Processor List"));
 		//viewMenuItem->addAction(processorTreeWidget_->toggleViewAction());
