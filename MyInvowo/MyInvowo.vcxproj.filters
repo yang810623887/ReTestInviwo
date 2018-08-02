@@ -36,9 +36,21 @@
     <ClCompile Include="MyInvowo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MyDockWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyDockWidgetTitleBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyInvowo.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MyDockWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="MyDockWidgetTitleBar.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
