@@ -31,7 +31,7 @@ MyDockWidgetTitleBar::MyDockWidgetTitleBar(QWidget *parent)
 
 	floatBtn_->setIcon(icon2);
 	floatBtn_->setCheckable(true);
-	floatBtn_->setChecked(parent_->isFloating);
+	floatBtn_->setChecked(parent_->isFloating());
 	floatBtn_->setObjectName("dockBtn");
 
 	QToolButton *closeBtn = new QToolButton();
@@ -64,6 +64,7 @@ void MyDockWidgetTitleBar::paintEvent(QPaintEvent *)
 
 void MyDockWidgetTitleBar::stickyBtnToggled(bool toggle)
 {
+	//此处待开发
 	if (toggle) {
 		parent_->setAllowedAreas(allowedDockAreas_);
 	}
