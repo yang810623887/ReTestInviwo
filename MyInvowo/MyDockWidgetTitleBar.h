@@ -7,6 +7,8 @@ class QDockWidget;
 class QToolButton;
 class QLabel;
 
+namespace myviwo {
+
 class MyDockWidgetTitleBar : public QWidget
 {
 	Q_OBJECT
@@ -38,3 +40,5 @@ private:
 
 	bool internalStickyFlagUpdate_;
 };
+
+}

@@ -42,6 +42,9 @@
     <ClCompile Include="MyDockWidgetTitleBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Mysettingswidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="MyInvowo.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="MyDockWidgetTitleBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Mysettingswidget.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -4,13 +4,18 @@
 #include <QKeyEvent>
 #include <qlayout.h>
 
+namespace myviwo {
+
+	class MyDockWidgetTitleBar;
+
+
 class MyDockWidget : public QDockWidget
 {
 	Q_OBJECT
 
 public:
 	MyDockWidget(QString title, QWidget *parent);
-	~MyDockWidget();
+	virtual ~MyDockWidget();
 	//ÖØÐ´
 	virtual void showEvent(QShowEvent *showEvent) override;
 	virtual void keyPressEvent(QKeyEvent *keyEvent) override;
@@ -25,6 +30,8 @@ public:
 signals:
 	void stickyFlagChanged(bool sticky);
 private:
-
+	MyDockWidgetTitleBar * dockWidgetTitleBar_;
 
 };
+
+}

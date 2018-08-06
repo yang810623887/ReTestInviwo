@@ -5,6 +5,11 @@
 #include <qicon.h>
 #include <qpixmap.h>
 #include <QHBoxLayout>
+#include <QStyleOption>
+#include <QPainter>
+
+namespace myviwo {
+
 MyDockWidgetTitleBar::MyDockWidgetTitleBar(QWidget *parent)
 	: QWidget(parent)
 	, parent_(dynamic_cast<QDockWidget *>(parent))
@@ -49,6 +54,9 @@ MyDockWidgetTitleBar::MyDockWidgetTitleBar(QWidget *parent)
 	this->setLayout(layout);
 
 	QObject::connect(stickyBtn_, &QToolButton::toggled, this, &MyDockWidgetTitleBar::stickyBtnToggled);
+	QObject::connect(floatBtn_, &QToolButton::clicked, this, 
+					[&](){ parent_->setFloating(!parent_->isFloating()); }); //这两个函数都属于父类
+	QObject::connect(closeBtn, &QToolButton::clicked, parent_, &QDockWidget::close);
 }
 
 MyDockWidgetTitleBar::~MyDockWidgetTitleBar()
@@ -56,15 +64,59 @@ MyDockWidgetTitleBar::~MyDockWidgetTitleBar()
 }
 void MyDockWidgetTitleBar::showEvent(QShowEvent *event)
 {
-
+	if (isSticky())
+	{
+		parent_->setAllowedAreas(allowedDockAreas_);
+	}
+	else
+	{
+		parent_->setAllowedAreas(Qt::NoDockWidgetArea);
+	}
 }
 void MyDockWidgetTitleBar::paintEvent(QPaintEvent *)
 {
+	QStyleOption opt;
+	opt.init(this);
+	QPainter p(this);
+	style()->drawPrimitive(QStyle::PE_Widget, &opt, &p, this);
+}
+
+void MyDockWidgetTitleBar::setLabel(const QString & str)
+{
+	label_->setText(str);
+}
+
+void MyDockWidgetTitleBar::setSticky(bool toggle)
+{
+	stickyBtn_->setChecked(toggle);
+}
+
+bool MyDockWidgetTitleBar::isSticky() const
+{
+	return stickyBtn_->isChecked();
+}
+
+void MyDockWidgetTitleBar::allowedAreasChanged(Qt::DockWidgetAreas areas)
+{
+	if (!internalStickyFlagUpdate_)
+	{
+		allowedDockAreas_ = areas;
+		if (!isSticky())
+		{
+			//util::KeepTrueWhileInScope guard(&internalStickyFlagUpdate_);有待研究
+			parent_->setAllowedAreas(Qt::NoDockWidgetArea);
+		}
+	}
+}
+
+void MyDockWidgetTitleBar::floating(bool floating)
+{
+	floatBtn_->setChecked(floating);
 }
 
 void MyDockWidgetTitleBar::stickyBtnToggled(bool toggle)
 {
-	//此处待开发
+	//util::KeepTrueWhileInScope guard(&internalStickyFlagUpdate_);有待研究
 	if (toggle) {
 		parent_->setAllowedAreas(allowedDockAreas_);
 	}
@@ -73,4 +125,6 @@ void MyDockWidgetTitleBar::stickyBtnToggled(bool toggle)
 		parent_->setAllowedAreas(Qt::NoDockWidgetArea);
 	}
 	emit stickyFlagChanged(toggle);
+}
+
 }

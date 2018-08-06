@@ -2,7 +2,6 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_MyInvowo.h"
-
 #include <qtoolbar.h>
 #include <qtoolbutton.h>
 #include <qmenu.h>
@@ -11,74 +10,76 @@
 #include <unordered_map>
 #include <QDockWidget>
 
-//class SettingsWidget;
+namespace myviwo {
+	class Mysettingswidget;
 
-class MyInvowo : public QMainWindow
-{
-	Q_OBJECT
+	class MyInvowo : public QMainWindow
+	{
+		Q_OBJECT
 
-public:
-	static const unsigned int maxNumRecentFiles_ = 10;
-	MyInvowo(QWidget *parent = Q_NULLPTR);
+	public:
+		static const unsigned int maxNumRecentFiles_ = 10;
+		MyInvowo(QWidget *parent = Q_NULLPTR);
 
-private:
-	Ui::MyInvowoClass ui;
+	private:
+		Ui::MyInvowoClass ui;
 
-public slots:
-	void newWorkspace();
-	void openWorkSpace();
-	void openRecentWorkspace();
-	///**
-	//* \brief clear the recent file list in the menu
-	//*/
-	void clearRecentWorkspaceMenu();
-	//void openExampleWorkspace();
-	void saveWorkspace();
-	void saveWorkspaceAs();
-	///*
-	//* Save the current workspace into a new workspace file,
-	//* leaves the current workspace file as current workspace
-	//*/
-	void saveWorkspaceAsCopy();
-	//void exitInviwo(bool saveIfModified = true);
-	//void showAboutBox();
-
-
-	void fillExampleWorkspaceMenu();
-	void fillTestWorkspaceMenu();
-
-private:
-	void openWorkspace(QString workspaceFileName, bool exampleWorkspace);
-	void saveWorkspace(QString workspaceFileName);
-
-	void addActions();
-
-	void closeEvent();
-
-	bool askToSaveWorkspaceChanges();
-
-	// toolbar
-	QToolBar* basicToolbar_;
-
-	// dock widgets
-	//SettingsWidget* settingsWidget_;
-
-	// menu actions
-	std::unordered_map<std::string, QAction*> actions_;
-
-	std::vector<QAction*> workspaceActionRecent_;
-	QAction* clearRecentWorkspaces_;
+	public slots:
+		void newWorkspace();
+		void openWorkSpace();
+		void openRecentWorkspace();
+		///**
+		//* \brief clear the recent file list in the menu
+		//*/
+		void clearRecentWorkspaceMenu();
+		//void openExampleWorkspace();
+		void saveWorkspace();
+		void saveWorkspaceAs();
+		///*
+		//* Save the current workspace into a new workspace file,
+		//* leaves the current workspace file as current workspace
+		//*/
+		void saveWorkspaceAsCopy();
+		//void exitInviwo(bool saveIfModified = true);
+		//void showAboutBox();
 
 
-	QMenu* exampleMenu_ = nullptr;
-	QMenu* testMenu_ = nullptr;
+		void fillExampleWorkspaceMenu();
+		void fillTestWorkspaceMenu();
 
-	//setting
+	private:
+		void openWorkspace(QString workspaceFileName, bool exampleWorkspace);
+		void saveWorkspace(QString workspaceFileName);
 
-	//paths
-	QString currentWorkspaceFileName_;
+		void addActions();
+
+		void closeEvent();
+
+		bool askToSaveWorkspaceChanges();
+
+		// toolbar
+		QToolBar* basicToolbar_;
+
+		// dock widgets
+		Mysettingswidget* settingsWidget_;
+
+		// menu actions
+		std::unordered_map<std::string, QAction*> actions_;
+
+		std::vector<QAction*> workspaceActionRecent_;
+		QAction* clearRecentWorkspaces_;
 
 
-	//UndoManager undoManager_;
+		QMenu* exampleMenu_ = nullptr;
+		QMenu* testMenu_ = nullptr;
 
-};
+		//setting
+
+		//paths
+		QString currentWorkspaceFileName_;
+
+
+		//UndoManager undoManager_;
+
+	};
+}
